@@ -138,13 +138,6 @@ pub fn set_impedance(device_state: &mut DeviceState) -> io::Result<()> {
     write_to_stream(&mut stream, "OUTPut2:LOAD INFinity", true)?;
     std::thread::sleep(DEFAULT_TIMEOUT);
 
-    // write_to_stream(&mut stream, "OUTPut1:LOAD?", true)?;
-    // std::thread::sleep(DEFAULT_TIMEOUT);
-    // _ = get_response_from_stream(&mut stream);
-
-    // write_to_stream(&mut stream, "OUTPut2:LOAD?", true)?;
-    // std::thread::sleep(DEFAULT_TIMEOUT);
-    // _ = get_response_from_stream(&mut stream);
 
     Ok(())
 }
@@ -296,10 +289,8 @@ pub fn stimulate_and_send_trigger(
     println!("NUMBER OF STEPS {:?} \n", DEFAULT_NUMBER_OF_PULSES);
     let number_of_pulse_vector: Vec<i32> = (1..=DEFAULT_NUMBER_OF_PULSES).collect();
     print!("RANGE {:?} \n", number_of_pulse_vector.len());
+
     let mut current_pulse_index = 0;
-
-
-
     let number_of_pulse_vector: Vec<i32> = (1..=DEFAULT_NUMBER_OF_PULSES).collect();
         for _ in number_of_pulse_vector.iter() {
             if !*is_stimulating.lock().unwrap() {
@@ -315,8 +306,6 @@ pub fn stimulate_and_send_trigger(
             println!("Pulse index/total: {} / {}", current_pulse_index, DEFAULT_NUMBER_OF_PULSES);
             std::thread::sleep(DEFAULT_TIME_BETWEEN_PULSES);
         }
-
-
     Ok(())
 }
 
